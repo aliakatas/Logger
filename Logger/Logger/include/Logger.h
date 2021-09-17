@@ -3,7 +3,10 @@
 #include <stdio.h>
 #include <string>
 
-#define NOFILESPECIFIED			"NONE"
+#define NOFILESPECIFIED			"NONE"			//!< Value to indicate no valid log file is provided (uninitialised).
+#define DEFAULT_ERROR_TAG		"ERROR"			//!< Tag to designate an error in the log.
+#define DEFAULT_WARNING_TAG		"WARNING"		//!< Tag to designate a warning in the log.
+#define DEFAULT_NOTE_TAG		"NOTE"			//!< Tag to designate a note in the log.
 
 /** Handles the logic for logging various kinds of messages.
 * 
@@ -34,6 +37,45 @@ public:
 	* @return String of the file name including absolute or relative path.
 	*/
 	std::string get_filename();
+
+	/** Set the tag to be used when logging errors.
+	* Overrides default tag.
+	* 
+	* @param tag [in] Tag to be used.
+	*/
+	void set_error_tag(const char* tag);
+
+	/** Get the tag used for errors.
+	*
+	* @return String representation of the tag.
+	*/
+	std::string get_error_tag();
+
+	/** Set the tag to be used when logging warnings.
+	* Overrides default tag.
+	* 
+	* @param tag [in] Tag to be used.
+	*/
+	void set_warning_tag(const char* tag);
+
+	/** Get the tag used for warnings.
+	*
+	* @return String representation of the tag.
+	*/
+	std::string get_warning_tag();
+
+	/** Set the tag to be used when logging notes.
+	* Overrides default tag.
+	*
+	* @param tag [in] Tag to be used.
+	*/
+	void set_note_tag(const char* tag);
+
+	/** Get the tag used for notes.
+	*
+	* @return String representation of the tag.
+	*/
+	std::string get_note_tag();
 
 	/** Open the log file assigned to this Logger object.
 	* 
@@ -121,10 +163,9 @@ public:
 	* 
 	* @param description [in] The message describing the event.
 	* @param line_guard [in] The string to lead the line feed. Default is empty.
-	* @param error_tag [in] The string-tag to define an error in the log.
 	* @return True if successful, false otherwise.
 	*/
-	bool log_error(const char* description, const char* line_guard = "", const char* error_tag = "ERROR");
+	bool log_error(const char* description, const char* line_guard = "");
 	
 	/** Logs a warning (its description) to the log file or stderr 
 	* (depending on current object's assignment).
@@ -135,10 +176,9 @@ public:
 	* 
 	* @param description [in] The message describing the event.
 	* @param line_guard [in] The string to lead the line feed. Default is empty.
-	* @param warning_tag [in] The string-tag to define a warning in the log.
 	* @return True if successful, false otherwise.
 	*/
-	bool log_warning(const char* description, const char* line_guard = "", const char* warning_tag = "WARNING");
+	bool log_warning(const char* description, const char* line_guard = "");
 	
 	/** Logs a note (its description) to the log file or stderr 
 	* (depending on current object's assignment).
@@ -149,10 +189,9 @@ public:
 	* 
 	* @param description [in] The message describing the event.
 	* @param line_guard [in] The string to lead the line feed. Default is empty.
-	* @param note_tag [in] The string-tag to define a note in the log.
 	* @return True if successful, false otherwise.
 	*/
-	bool log_note(const char* description, const char* line_guard = "", const char* note_tag = "NOTE");
+	bool log_note(const char* description, const char* line_guard = "");
 	
 	/** Generic log function. Depending on current object's assignment, it can write to
 	* a log file or stderr 
@@ -175,6 +214,9 @@ private:
 	FILE* temp_fptr;				//!< Working identifier (can be stderr or point to where fptr points.
 	std::string filename;			//!< Name of the log file (includes path).
 
+	std::string error_tag;			//!< Tag to use when logging errors.
+	std::string warning_tag;		//!< Tag to use when logging warnings.
+	std::string note_tag;			//!< Tag to use when logging notes.
 };
 
 

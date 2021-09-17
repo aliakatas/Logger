@@ -32,6 +32,36 @@ std::string Logger::get_filename() {
 }
 
 //************************************
+void Logger::set_error_tag(const char* tag) {
+	error_tag = tag;
+}
+
+//************************************
+std::string Logger::get_error_tag() {
+	return error_tag;
+}
+
+//************************************
+void Logger::set_warning_tag(const char* tag) {
+	warning_tag = tag;
+}
+
+//************************************
+std::string Logger::get_warning_tag() {
+	return warning_tag;
+}
+
+//************************************
+void Logger::set_note_tag(const char* tag) {
+	note_tag = tag;
+}
+
+//************************************
+std::string Logger::get_note_tag() {
+	return note_tag;
+}
+
+//************************************
 bool Logger::open_file() {
 	if (filename.compare(NOFILESPECIFIED) == 0)
 		return false;
@@ -137,18 +167,18 @@ bool Logger::log_event(const char* description, const char* line_guard) {
 }
 
 //************************************
-bool Logger::log_error(const char* description, const char* line_guard, const char* error_tag) {
-	return log_generic(description, line_guard, error_tag, true);
+bool Logger::log_error(const char* description, const char* line_guard) {
+	return log_generic(description, line_guard, error_tag.c_str(), true);
 }
 
 //************************************
-bool Logger::log_warning(const char* description, const char* line_guard, const char* warning_tag) {
-	return log_generic(description, line_guard, warning_tag, true);
+bool Logger::log_warning(const char* description, const char* line_guard) {
+	return log_generic(description, line_guard, warning_tag.c_str(), true);
 }
 
 //************************************
-bool Logger::log_note(const char* description, const char* line_guard, const char* note_tag) {
-	return log_generic(description, line_guard, note_tag, true);
+bool Logger::log_note(const char* description, const char* line_guard) {
+	return log_generic(description, line_guard, note_tag.c_str(), true);
 }
 
 //************************************
