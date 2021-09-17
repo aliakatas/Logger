@@ -21,12 +21,18 @@
     <ClInclude Include="include\create_timestamp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="include\LoggerStream.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Logger.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\create_timestamp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\LoggerStream.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -145,10 +145,12 @@
   <ItemGroup>
     <ClInclude Include="include\create_timestamp.h" />
     <ClInclude Include="include\Logger.h" />
+    <ClInclude Include="include\LoggerStream.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\create_timestamp.cpp" />
     <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\LoggerStream.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

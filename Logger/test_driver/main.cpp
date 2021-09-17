@@ -1,5 +1,6 @@
 #include "Timer.h"
 #include "Logger.h"
+#include "LoggerStream.h"
 #include "text_definitions.h"
 #include <stdio.h>
 
