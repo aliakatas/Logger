@@ -3,13 +3,14 @@
 #include "text_definitions.h"
 #include <stdio.h>
 
-#define N				100000
+#define N				10000
 #define EXAMPLE_LOG		"classic_log.log"
 
 int main(int argc, char** argv) {
 	fprintf_s(stderr, "Starting Logger test driver...\n");
 
 	Logger my_classic_logger;
+	Logger cli_logger;
 	Timer my_timer;
 
 	my_timer.reset();
@@ -17,6 +18,7 @@ int main(int argc, char** argv) {
 	my_classic_logger.open_file();
 
 	for (auto i = 0; i < N; ++i) {
+		// Write to log file
 		if (!my_classic_logger.log_event("*****************", "$!"))
 			return -1;
 		if (!my_classic_logger.log_error(LINE1_TXT, "!!"))
@@ -27,15 +29,29 @@ int main(int argc, char** argv) {
 			return -1;
 		if (!my_classic_logger.write(LINE4_TXT))
 			return -1;
-		if (!my_classic_logger.write(COMMON_FLOAT_PI))
-			return -1;
-		if (!my_classic_logger.write(COMMON_FLOAT_sq2))
-			return -1;
 		if (!my_classic_logger.write_date(2021, 9, 21))
 			return -1;
 		if (!my_classic_logger.log_message("Message from main", " "))
 			return -1;
 		if (!my_classic_logger.log_event("*****************"))
+			return -1;
+
+		// Write to stderr
+		if (!cli_logger.log_event("*****************", "$!"))
+			return -1;
+		if (!cli_logger.log_error(LINE1_TXT, "!!"))
+			return -1;
+		if (!cli_logger.log_warning(LINE2_TXT, "$!"))
+			return -1;
+		if (!cli_logger.log_note(LINE3_TXT))
+			return -1;
+		if (!cli_logger.write(LINE4_TXT))
+			return -1;
+		if (!cli_logger.write_date(2021, 9, 21))
+			return -1;
+		if (!cli_logger.log_message("Message from main", " "))
+			return -1;
+		if (!cli_logger.log_event("*****************"))
 			return -1;
 	}
 
