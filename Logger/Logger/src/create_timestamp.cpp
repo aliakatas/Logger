@@ -32,6 +32,8 @@ void time_numbers(int* value)
     value[3] = tm_ptr->tm_hour;
     value[4] = tm_ptr->tm_min;
     value[5] = tm_ptr->tm_sec;
+
+    free(tm_ptr);
 }
 /******************************************************************************/
 
@@ -50,6 +52,7 @@ void timestamp() {
 
     printf("%s\n", time_buffer);
 
+    free(tm_ptr);
     return;
 # undef TIME_SIZE
 }
@@ -76,6 +79,7 @@ char* timestring()
     //strftime(s, TIME_SIZE, "%d %B %Y %I:%M:%S %p", tm_ptr);
     strftime(s, TIME_SIZE, "%Y-%m-%d %H:%M:%S", tm_ptr);
 
+    free(tm_ptr);
     return s;
 # undef TIME_SIZE
 }
@@ -91,4 +95,5 @@ void get_timestamp_now(char* time_buffer, const int buff_size) {
     localtime_s(tm_ptr, &now);
 
     strftime(time_buffer, buff_size, "%Y-%m-%d %H:%M:%S", tm_ptr);
+    free(tm_ptr);
 }
