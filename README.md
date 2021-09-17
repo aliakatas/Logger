@@ -8,6 +8,7 @@ Examples of using the class can be found in [test_driver](https://github.com/ali
 The Logger can write to stderr or a log file, depending on the object's usage in the code.
 
 Some possible outputs can be:
+
     $![2021-09-17 18:22:57] This is an event description with a line guard ($!). 
     !![2021-09-17 18:22:57] ERROR: This is an error message with line guard (!! - optional).
     [2021-09-17 18:22:57] WARNING: This is a warning message without a line guard (can have a line guard).
