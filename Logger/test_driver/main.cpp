@@ -3,7 +3,9 @@
 #include "text_definitions.h"
 #include <stdio.h>
 
-#define N		100000
+#define N				100000
+#define EXAMPLE_LOG		"classic_log.log"
+#define EXAMPLE_STREAM_LOG		"stream_log.log"
 
 int main(int argc, char** argv) {
 	fprintf_s(stderr, "Starting Logger test driver...\n");
@@ -12,7 +14,7 @@ int main(int argc, char** argv) {
 	Timer my_timer;
 
 	my_timer.reset();
-	my_classic_logger.set_filename("classic_log.log");
+	my_classic_logger.set_filename(EXAMPLE_LOG);
 	my_classic_logger.open_file();
 
 	for (auto i = 0; i < N; ++i) {
@@ -46,7 +48,7 @@ int main(int argc, char** argv) {
 	LoggerStream my_stream_logger;
 
 	my_timer.reset();
-	my_stream_logger.set_filename("stream_log.log");
+	my_stream_logger.set_filename(EXAMPLE_STREAM_LOG);
 	my_stream_logger.open_file();
 
 	for (auto i = 0; i < N; ++i) {
